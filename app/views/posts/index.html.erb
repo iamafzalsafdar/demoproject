@@ -1,0 +1,13 @@
+<h2>DashBoard</h2>
+<h3>All posts</h3>
+<% @posts.each do |post| %>
+<ul>
+    <li>
+      <a href="/posts/<%= post.id %>">
+      <%= post.title %>
+    </a>
+    </li>
+    </ul>
+<% end %>
+
+<%= link_to "New Post", new_post_path %>

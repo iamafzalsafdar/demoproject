@@ -1,0 +1,7 @@
+<% if current_usermodel %> 
+<h2>DashBoard</h2>
+
+else
+<%= link_to "Sign In", new_usermodel_session_path %>
+<%= link_to  "Sign Up", new_usermodel_registration_path %>
+<% end %> 
