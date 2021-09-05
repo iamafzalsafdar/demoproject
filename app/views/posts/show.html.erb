@@ -1,3 +1,35 @@
 <h1><%= @post.title %></h1>
 
 <p><%= @post.descripition %></p>
+
+<h2>comments</h2>
+
+<% @post.comments.each do |comment| %>
+
+<p>
+<h3>commenter</h3>
+<%= comment.commenter %>
+<h3>body</h3>
+<%= comment.body %>
+</p>    
+
+<% end %>
+<h2>Add a comment</h2>
+    <%= form_with model: [ @post, @post.comments.build ] do |form| %>
+
+    <p>
+    <%= form.label :commenter %>
+    <br>
+    <%= form.text_field :commenter %>
+    <br>
+    </p>
+
+    <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+

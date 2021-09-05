@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get "/users", to: "users#index"
   resources :users
-  resources :posts
+  resources :posts do
+    resources:comments
+    end
   resources:login
 end
