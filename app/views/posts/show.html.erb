@@ -2,6 +2,11 @@
 
 <p><%= @post.descripition %></p>
 
+<p><%= current_usermodel.email %></p>
+<% if @post.image.present? && !@post.image.blank? %>
+<%= image_tag(@post.image) %>
+<% end %>
+
 <h2>comments</h2>
 
 <% @post.comments.each do |comment| %>
@@ -20,7 +25,7 @@
     <p>
     <%= form.label :commenter %>
     <br>
-    <%= form.text_field :commenter %>
+    <%= form.text_field :commenter,value:current_usermodel.email %>
     <br>
     </p>
 
