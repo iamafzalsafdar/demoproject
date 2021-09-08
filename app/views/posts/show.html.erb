@@ -1,40 +1,50 @@
-<h1><%= @post.title %></h1>
+<% if !@post.approval && !@post.approval.present?%>
+  <p>Not approved</p>
+  <%= button_to 'Approve Post' , posts_action_path(:post_id=> @post.id), method: :post %>
+    <% end %>
 
-<p><%= @post.descripition %></p>
+      <h1>
+        <%= @post.title %>
+      </h1>
 
-<p><%= current_usermodel.email %></p>
-<% if @post.image.present? && !@post.image.blank? %>
-<%= image_tag(@post.image) %>
-<% end %>
+      <p>
+        <%= @post.descripition %>
+      </p>
 
-<h2>comments</h2>
+      <p>
+        <%= current_usermodel.role %>
+      </p>
+      <% if @post.image.present? && !@post.image.blank? %>
+        <%= image_tag(@post.image) %>
+          <% end %>
 
-<% @post.comments.each do |comment| %>
+            <h2>comments</h2>
 
-<p>
-<h3>commenter</h3>
-<%= comment.commenter %>
-<h3>body</h3>
-<%= comment.body %>
-</p>    
+            <% @post.comments.each do |comment| %>
 
-<% end %>
-<h2>Add a comment</h2>
-    <%= form_with model: [ @post, @post.comments.build ] do |form| %>
+              <p>
+              <h3>commenter</h3>
+              <%= comment.commenter %>
+                <h3>body</h3>
+                <%= comment.body %>
+                  </p>
 
-    <p>
-    <%= form.label :commenter %>
-    <br>
-    <%= form.text_field :commenter,value:current_usermodel.email %>
-    <br>
-    </p>
+                  <% end %>
+                    <h2>Add a comment</h2>
+                    <%= form_with model: [ @post, @post.comments.build ] do |form| %>
 
-    <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+                      <p>
+                        <%= form.label :commenter %>
+                          <br>
+                          <%= form.text_field :commenter,value:current_usermodel.email %>
+                            <br>
+                      </p>
 
+                      <p>
+                        <%= form.label :body %><br>
+                          <%= form.text_area :body %>
+                      </p>
+                      <p>
+                        <%= form.submit %>
+                      </p>
+                      <% end %>
