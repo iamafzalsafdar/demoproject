@@ -1,4 +1,4 @@
-<% if !@post.approval && !@post.approval.present?%>
+<% if !@post.approval && !@post.approval.present? && current_usermodel.role.present? && current_usermodel.role=="Admin"%>
   <p>Not approved</p>
   <%= button_to 'Approve Post' , posts_action_path(:post_id=> @post.id), method: :post %>
     <% end %>
@@ -47,4 +47,7 @@
                       <p>
                         <%= form.submit %>
                       </p>
+
+                      <br>
+                      <%= link_to "Back", posts_path %>
                       <% end %>
