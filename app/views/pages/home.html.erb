@@ -1,5 +1,7 @@
 <h2>DashBoard</h2>
+<% if current_usermodel!=nil%>
 <%= link_to "Show All Posts", posts_path %>
+<% end %>
 <br />
 <%= link_to "Sign In", new_usermodel_session_path %>
 <br />
