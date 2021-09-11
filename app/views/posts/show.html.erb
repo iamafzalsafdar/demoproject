@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <% if !@post.approval && !@post.approval.present?%>
   <p>Not approved</p>
   <%= button_to 'Approve Post' , posts_action_path(:post_id=> @post.id), method: :post %>
@@ -16,20 +17,18 @@
       </p>
 
       <p>
-        <%= current_usermodel.role %>
       </p>
       <% if @post.image.present? && !@post.image.blank? %>
         <%= image_tag(@post.image) %>
           <% end %>
 
-            <h2>comments</h2>
+            <h2>comments :</h2>
 
+            <strong>
             <% @post.comments.each do |comment| %>
-
+          </strong>
               <p>
-              <h3>commenter</h3>
               <%= comment.commenter %>
-                <h3>body</h3>
                 <%= comment.body %>
                   </p>
 
@@ -52,3 +51,4 @@
                         <%= form.submit %>
                       </p>
                       <% end %>
+</div>
